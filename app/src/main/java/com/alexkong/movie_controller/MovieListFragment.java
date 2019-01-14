@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,10 +20,10 @@ import java.util.List;
 
 public class MovieListFragment extends Fragment {
 
-    static
-    {
+    static {
         System.loadLibrary("movie_controller");
     }
+
     public native String movieControllerInterface();
 
     public static MovieListFragment newInstance() {
@@ -45,7 +46,10 @@ public class MovieListFragment extends Fragment {
         initializeUi(view);
     }
 
-    private void initializeUi(View view){
+    private void initializeUi(View view) {
+
+        if (getActivity() != null && ((AppCompatActivity) getActivity()).getSupportActionBar() != null)
+            ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         String moviesJson = movieControllerInterface();
 

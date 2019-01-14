@@ -11,8 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -67,11 +69,13 @@ public class MovieDetailsFragment extends Fragment {
 
         TextView name;
         TextView age;
+        ImageView image;
 
         ActorViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.actor_name);
             age = view.findViewById(R.id.actor_age);
+            image = view.findViewById(R.id.actor_image);
         }
     }
 
@@ -99,6 +103,10 @@ public class MovieDetailsFragment extends Fragment {
 
             actorViewHolder.name.setText(actor.name);
             actorViewHolder.age.setText(String.format(getString(R.string.actor_age), actor.age));
+            if (actor.imageUrl != null && !actor.imageUrl.isEmpty())
+                Glide.with(MovieDetailsFragment.this)
+                        .load(actor.imageUrl)
+                        .into(actorViewHolder.image);
         }
 
         @Override

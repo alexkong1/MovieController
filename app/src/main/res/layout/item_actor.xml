@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:padding="20dp">
+
 
     <TextView
         android:id="@+id/actor_name"
@@ -9,7 +11,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="NAME"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/actor_age"
@@ -18,7 +20,16 @@
         android:layout_below="@id/actor_name"
         android:layout_centerHorizontal="true"
         android:text="AGE"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
+
+
+    <ImageView
+        android:id="@+id/actor_image"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher_background" />
 
 
 </RelativeLayout>

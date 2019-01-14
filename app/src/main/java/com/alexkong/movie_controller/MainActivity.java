@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
 
     @Override
     public void onMovieSelected(String name) {
-        Log.e("MOVIE DETAIL", name);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, MovieDetailsFragment.newInstance(name))
+                .addToBackStack(null)
                 .commit();
     }
 
@@ -46,14 +46,7 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-                if (fragment instanceof MovieDetailsFragment) {
-                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                }
-            }
-        }
+        if (item.getItemId() == android.R.id.home) onBackPressed();
         return super.onOptionsItemSelected(item);
     }
 }
