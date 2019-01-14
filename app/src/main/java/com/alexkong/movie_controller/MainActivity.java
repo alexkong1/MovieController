@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,5 +29,15 @@ public class MainActivity extends AppCompatActivity {
 
         String movies = movieControllerInterface();
         Log.e("MOVIE CONTROLLER", movies);
+
+        try {
+            Movies.MovieController movieList = new Gson().fromJson(movies, Movies.MovieController.class);
+            if (movieList != null) {
+                for (Movies.Movie movie : movieList.getMovies())
+                    Log.e("MOVIE CONTROLLER", movie.name);
+            }
+        } catch (Exception e) {
+            Log.e("MOVIE CONTROLLER", e.toString());
+        }
     }
 }

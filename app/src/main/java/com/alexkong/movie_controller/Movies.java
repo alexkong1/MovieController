@@ -29,5 +29,8 @@ public class Movies {
         private List<Movie> movies;
         private Map<String, MovieDetail> details;
 
+        public List<Movie> getMovies() {
+            return movies;
+        }
     }
 }

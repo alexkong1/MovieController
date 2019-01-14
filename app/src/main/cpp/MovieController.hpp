@@ -115,8 +115,12 @@ namespace movies {
 
 std::string get_new_movies();
 
+std::string get_movies_as_json();
+
 std::vector<movies::Movie *> get_movies() {
     return movies::MovieController().getMovies();
 }
+
+movies::MovieDetail* get_details();
 
 #endif /* MovieController_hpp */
