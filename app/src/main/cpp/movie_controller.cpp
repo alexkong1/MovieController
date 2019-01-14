@@ -10,21 +10,21 @@
 
 
 JNIEXPORT jstring JNICALL
-Java_com_alexkong_movie_1controller_MainActivity_movieDetailsInterface(
+Java_com_alexkong_movie_1controller_MovieListFragment_movieControllerInterface(
+        JNIEnv* env,
+        jobject /* this */) {
+
+    std::string result = get_movies_as_json();
+    return env->NewStringUTF(result.c_str());
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_alexkong_movie_1controller_MovieDetailsFragment_movieDetailsInterface(
         JNIEnv* env,
         jobject obj,
         jstring name) {
 
     std::string result = get_details_as_json(jstring2string(env, name));
-    return env->NewStringUTF(result.c_str());
-}
-
-JNIEXPORT jstring JNICALL
-Java_com_alexkong_movie_1controller_MainActivity_movieControllerInterface(
-        JNIEnv* env,
-        jobject /* this */) {
-
-    std::string result = get_movies_as_json();
     return env->NewStringUTF(result.c_str());
 }
 

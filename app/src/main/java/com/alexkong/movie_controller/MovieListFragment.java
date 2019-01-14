@@ -19,13 +19,15 @@ import java.util.List;
 
 public class MovieListFragment extends Fragment {
 
-    public static final String ARGS_MOVIES_JSON = "moviesJson";
+    static
+    {
+        System.loadLibrary("movie_controller");
+    }
+    public native String movieControllerInterface();
 
-
-    public static MovieListFragment newInstance(String moviesJson) {
+    public static MovieListFragment newInstance() {
         MovieListFragment fragment = new MovieListFragment();
         Bundle args = new Bundle();
-        args.putString(ARGS_MOVIES_JSON, moviesJson);
         fragment.setArguments(args);
         return fragment;
     }
@@ -45,7 +47,7 @@ public class MovieListFragment extends Fragment {
 
     private void initializeUi(View view){
 
-        String moviesJson = getArguments().getString(ARGS_MOVIES_JSON);
+        String moviesJson = movieControllerInterface();
 
         List<Movies.Movie> movies = new ArrayList<>();
 

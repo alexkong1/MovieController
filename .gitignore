@@ -71,3 +71,4 @@ fastlane/readme.md
 gradle/
 gradlew
 gradlew.bat
+.cxx/

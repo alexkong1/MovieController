@@ -18,10 +18,10 @@
 std::string jstring2string(JNIEnv *env, jstring jStr);
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_alexkong_movie_1controller_MainActivity_movieDetailsInterface(JNIEnv* env, jobject obj, jstring path);
+Java_com_alexkong_movie_1controller_MovieDetailsFragment_movieDetailsInterface(JNIEnv* env, jobject obj, jstring path);
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_alexkong_movie_1controller_MainActivity_movieControllerInterface(JNIEnv* env, jobject);
+Java_com_alexkong_movie_1controller_MovieListFragment_movieControllerInterface(JNIEnv* env, jobject);
 
 
 namespace movies {
