@@ -1,8 +1,9 @@
 package com.alexkong.movie_controller;
 
 import java.util.List;
+import java.util.Map;
 
-public class MovieController {
+public class Movies {
 
     public class Movie {
         public String name;
@@ -22,5 +23,11 @@ public class MovieController {
         public float score;
         public List<Actor> actors;
         public String description;
+    }
+
+    public class MovieController {
+        private List<Movie> movies;
+        private Map<String, MovieDetail> details;
+
     }
 }

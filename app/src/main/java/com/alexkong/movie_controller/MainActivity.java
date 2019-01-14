@@ -8,12 +8,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-
     static
     {
         System.loadLibrary("movie_controller");
     }
-    public native List<MovieController.Movie> movieControllerInterface();
+    public native String movieControllerInterface();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        List<MovieController.Movie> movies = movieControllerInterface();
+        String movies = movieControllerInterface();
     }
 }

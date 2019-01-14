@@ -12,10 +12,11 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <jni.h>
 
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_alexkong_movie_lcontroller_MainActivity_movieControllerInterface(JNIEnv* env, jobject);
+Java_com_alexkong_movie_1controller_MainActivity_movieControllerInterface(JNIEnv* env, jobject);
 
 namespace movies {
     class Actor {
@@ -111,5 +112,7 @@ namespace movies {
 
     };
 }
+
+std::string new_movies();
 
 #endif /* MovieController_hpp */
