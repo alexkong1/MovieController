@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
     }
     public native String movieControllerInterface();
 
-    public native String movieDetailsInterface(String name);
+    public native String movieDetailsInterface(String path);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity implements MovieListFragment
     }
 
     @Override
-    public void onMovieSelected(String name) {
-        Log.e("MOVIE DETAIL", name);
+    public void onMovieSelected(String path) {
+        Log.e("MOVIE DETAIL", path);
 
-        String detailsJson = movieDetailsInterface(name);
+        String detailsJson = movieDetailsInterface(path);
 
         try {
             Movies.MovieDetail detail = new Gson().fromJson(detailsJson, Movies.MovieDetail.class);

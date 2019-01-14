@@ -12,7 +12,7 @@
 JNIEXPORT jstring JNICALL
 Java_com_alexkong_movie_1controller_MainActivity_movieDetailsInterface(
         JNIEnv* env,
-        jobject /* this */,
+        jobject obj,
         jstring name) {
 
     std::string result = get_details_as_json(jstring2string(env, name));
@@ -21,7 +21,6 @@ Java_com_alexkong_movie_1controller_MainActivity_movieDetailsInterface(
 
 JNIEXPORT jstring JNICALL
 Java_com_alexkong_movie_1controller_MainActivity_movieControllerInterface(
-//Java_com_alexkong_movie_1controller_MovieListFragment_movieControllerInterface(
         JNIEnv* env,
         jobject /* this */) {
 
@@ -56,21 +55,20 @@ std::string get_details_as_json(std::string name)
     std::ostringstream stream;
 
     movies::MovieDetail* detail = get_movie_detail(name);
-    if (detail != nullptr) {
-        stream << "{\"name\": \"" << detail->name << "\", "
-               << "\"score\": " << detail->score << ", \"actors\": [";
+    stream << "{\"name\": \"" << detail->name << "\", "
+           << "\"score\": " << detail->score << ", \"actors\": [";
 
-        std::vector<movies::Actor> actors = detail->actors;
-        for (std::vector<movies::Actor>::size_type i = 0; i != actors.size(); i++) {
-            stream << "{\"name\": \"" << actors[i].name << "\", " << "\"age\": " << actors[i].age << ", "
-            << "\"imageUrl\": \"" << actors[i].imageUrl << "\"}";
-            if (i < actors.size() - 1)
-                stream << ", ";
-        }
-
-        stream << "], \"description\": \"" << detail->description << "\"}";
+    std::vector<movies::Actor> actors = detail->actors;
+    for (std::vector<movies::Actor>::size_type i = 0; i != actors.size(); i++) {
+        stream << "{\"name\": \"" << actors[i].name << "\", " << "\"age\": " << actors[i].age << ", "
+        << "\"imageUrl\": \"" << actors[i].imageUrl << "\"}";
+        if (i < actors.size() - 1)
+            stream << ", ";
     }
 
+    stream << "], \"description\": \"" << detail->description << "\"}";
+    result = stream.str();
+    return result;
 }
 
 std::string jstring2string(JNIEnv *env, jstring jStr)

@@ -18,13 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieListFragment extends Fragment {
-/*
-    static
-    {
-        System.loadLibrary("movie_controller");
-    }
-    public native String movieControllerInterface();
-*/
+
     public static final String ARGS_MOVIES_JSON = "moviesJson";
 
 
@@ -51,19 +45,13 @@ public class MovieListFragment extends Fragment {
 
     private void initializeUi(View view){
 
-        //String moviesJson = movieControllerInterface();
         String moviesJson = getArguments().getString(ARGS_MOVIES_JSON);
-        Log.e("MOVIE CONTROLLER", moviesJson);
 
         List<Movies.Movie> movies = new ArrayList<>();
 
         try {
             Movies.MovieController movieList = new Gson().fromJson(moviesJson, Movies.MovieController.class);
-            if (movieList != null) {
-                movies = movieList.getMovies();
-                for (Movies.Movie movie : movieList.getMovies())
-                    Log.e("MOVIE CONTROLLER", movie.name);
-            }
+            if (movieList != null) movies = movieList.getMovies();
         } catch (Exception e) {
             Log.e("MOVIE CONTROLLER", e.toString());
         }
