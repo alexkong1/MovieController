@@ -3,6 +3,7 @@ package com.alexkong.movie_controller;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.List;
 
@@ -25,5 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 
         String movies = movieControllerInterface();
+        Log.e("MOVIE CONTROLLER", movies);
     }
 }

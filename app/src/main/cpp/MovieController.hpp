@@ -113,6 +113,10 @@ namespace movies {
     };
 }
 
-std::string new_movies();
+std::string get_new_movies();
+
+std::vector<movies::Movie *> get_movies() {
+    return movies::MovieController().getMovies();
+}
 
 #endif /* MovieController_hpp */
