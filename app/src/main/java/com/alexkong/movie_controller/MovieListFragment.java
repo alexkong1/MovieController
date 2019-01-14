@@ -69,10 +69,12 @@ public class MovieListFragment extends Fragment {
 
     class MovieViewHolder extends RecyclerView.ViewHolder {
         TextView title;
+        TextView lastUpdated;
 
         MovieViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.item_movie_title);
+            lastUpdated = view.findViewById(R.id.item_movie_last_updated);
         }
     }
 
@@ -99,6 +101,8 @@ public class MovieListFragment extends Fragment {
         public void onBindViewHolder(@NonNull MovieViewHolder movieViewHolder, int i) {
             final Movies.Movie movie = movies.get(movieViewHolder.getAdapterPosition());
             movieViewHolder.title.setText(movie.name);
+            movieViewHolder.lastUpdated.setText(String.format(getString(R.string.last_updated),
+                    movie.lastUpdated / 1000));
             movieViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -60,6 +60,11 @@ public class MovieDetailsFragment extends Fragment {
 
         Movies.MovieDetail detail = new Gson().fromJson(detailsJson, Movies.MovieDetail.class);
 
+        ((TextView) root.findViewById(R.id.movie_details_title)).setText(detail.name);
+        ((TextView) root.findViewById(R.id.movie_details_description)).setText(detail.description);
+        ((TextView) root.findViewById(R.id.movie_details_rating)).setText(
+                String.format(getString(R.string.rating), detail.score));
+
         RecyclerView recyclerView = root.findViewById(R.id.movie_details_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new ActorsAdapter(detail.actors));

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MovieController Technical Challenge</string>
     <string name="actor_age">Age: %1$d</string>
+    <string name="cast">Cast</string>
+    <string name="rating">Rating: %1$.1f</string>
+    <string name="last_updated">Last updated: %1$1d secs ago</string>
 </resources>
