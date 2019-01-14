@@ -18,6 +18,11 @@
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_alexkong_movie_1controller_MainActivity_movieControllerInterface(JNIEnv* env, jobject);
 
+std::string jstring2string(JNIEnv *env, jstring jStr);
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_alexkong_movie_1controller_MainActivity_movieDetailsInterface(JNIEnv* env, jobject, jstring path);
+
 namespace movies {
     class Actor {
     public:
@@ -121,6 +126,6 @@ std::vector<movies::Movie *> get_movies() {
     return movies::MovieController().getMovies();
 }
 
-movies::MovieDetail* get_details();
+std::string get_details_as_json(const std::string name);
 
 #endif /* MovieController_hpp */

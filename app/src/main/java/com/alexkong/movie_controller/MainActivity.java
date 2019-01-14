@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         System.loadLibrary("movie_controller");
     }
     public native String movieControllerInterface();
+    public native String movieDetailsInterface(String name);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
