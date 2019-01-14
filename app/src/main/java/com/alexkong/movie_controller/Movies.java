@@ -1,5 +1,6 @@
 package com.alexkong.movie_controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class Movies {
     }
 
     public class MovieController {
-        private List<Movie> movies;
+        private List<Movie> movies = new ArrayList<>();
         private Map<String, MovieDetail> details;
 
         public List<Movie> getMovies() {

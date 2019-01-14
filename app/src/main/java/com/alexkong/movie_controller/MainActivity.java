@@ -9,13 +9,14 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieListFragment.OnClickMovieListener {
 
     static
     {
         System.loadLibrary("movie_controller");
     }
     public native String movieControllerInterface();
+
     public native String movieDetailsInterface(String name);
 
     @Override
@@ -28,17 +29,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        String movies = movieControllerInterface();
-        Log.e("MOVIE CONTROLLER", movies);
+        String moviesJson = movieControllerInterface();
+
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, MovieListFragment.newInstance(moviesJson))
+                .commit();
+
+    }
+
+    @Override
+    public void onMovieSelected(String name) {
+        Log.e("MOVIE DETAIL", name);
+
+        String detailsJson = movieDetailsInterface(name);
 
         try {
-            Movies.MovieController movieList = new Gson().fromJson(movies, Movies.MovieController.class);
-            if (movieList != null) {
-                for (Movies.Movie movie : movieList.getMovies())
-                    Log.e("MOVIE CONTROLLER", movie.name);
-            }
+            Movies.MovieDetail detail = new Gson().fromJson(detailsJson, Movies.MovieDetail.class);
+            if (detail != null) Log.e("MOVIE DETAIL", detail.description);
         } catch (Exception e) {
-            Log.e("MOVIE CONTROLLER", e.toString());
+            Log.e("MOVIE DETAIL", e.toString());
         }
     }
 }

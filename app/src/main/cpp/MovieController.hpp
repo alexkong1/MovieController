@@ -15,13 +15,15 @@
 #include <jni.h>
 
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_alexkong_movie_1controller_MainActivity_movieControllerInterface(JNIEnv* env, jobject);
-
 std::string jstring2string(JNIEnv *env, jstring jStr);
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_alexkong_movie_1controller_MainActivity_movieDetailsInterface(JNIEnv* env, jobject, jstring path);
+
+extern "C" JNIEXPORT jstring JNICALL
+Java_com_alexkong_movie_1controller_MainActivity_movieControllerInterface(JNIEnv* env, jobject);
+//Java_com_alexkong_movie_1controller_MovieListFragment_movieControllerInterface(JNIEnv* env, jobject);
+
 
 namespace movies {
     class Actor {
@@ -118,14 +120,16 @@ namespace movies {
     };
 }
 
-std::string get_new_movies();
-
 std::string get_movies_as_json();
 
 std::vector<movies::Movie *> get_movies() {
     return movies::MovieController().getMovies();
 }
 
-std::string get_details_as_json(const std::string name);
+std::string get_details_as_json(std::string name);
+
+movies::MovieDetail* get_movie_detail(std::string name) {
+    return movies::MovieController().getMovieDetail(name);
+}
 
 #endif /* MovieController_hpp */
